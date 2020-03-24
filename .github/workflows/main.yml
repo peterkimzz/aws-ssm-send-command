@@ -38,7 +38,7 @@ jobs:
         env:
           SLACK_WEBHOOK: https://hooks.slack.com/services/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
           SLACK_USERNAME: 'Empo Bot'
-          SLACK_CHANNEL: 'test-reports'
+          SLACK_CHANNEL: 'test_reports'
         uses: Ilshidur/action-slack@master
         with:
           args: 'AWS Run-Command Succeed.'
@@ -48,7 +48,7 @@ jobs:
         env:
           SLACK_WEBHOOK: https://hooks.slack.com/services/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
           SLACK_USERNAME: 'Empo Bot'
-          SLACK_CHANNEL: 'test-reports'
+          SLACK_CHANNEL: 'test_reports'
         uses: Ilshidur/action-slack@master
         with:
           args: 'AWS Run-Command Failed.'
