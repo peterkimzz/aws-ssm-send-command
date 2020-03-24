@@ -31,4 +31,4 @@ jobs:
           --document-name "AWS-RunShellScript" \
           --comment "Blue/Green Deployment" \
           --parameters \
-            '{"workingDirectory": ["/home/ubuntu/api_production"], "commands":["/bin/sh deploy.sh"}'
+            '{"workingDirectory": ["/home/ubuntu/api_production"], "commands":["/bin/sh deploy.sh"]}'
