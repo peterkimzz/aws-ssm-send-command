@@ -32,3 +32,23 @@ jobs:
           --comment "Blue/Green Deployment" \
           --parameters \
             '{"workingDirectory": ["/home/ubuntu/api_production"], "commands":["/bin/sh deploy.sh"]}'
+
+      - name: Action Succeed
+        if: success()
+        env:
+          SLACK_WEBHOOK: https://hooks.slack.com/services/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
+          SLACK_USERNAME: 'Empo Bot'
+          SLACK_CHANNEL: 'test-reports'
+        uses: Ilshidur/action-slack@master
+        with:
+          args: 'AWS Run-Command Succeed.'
+
+      - name: Action Failed
+        if: failure()
+        env:
+          SLACK_WEBHOOK: https://hooks.slack.com/services/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
+          SLACK_USERNAME: 'Empo Bot'
+          SLACK_CHANNEL: 'test-reports'
+        uses: Ilshidur/action-slack@master
+        with:
+          args: 'AWS Run-Command Failed.'
