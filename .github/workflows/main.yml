@@ -11,15 +11,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Hello world action step
+      - name: AWS SSM Send-Command
         uses: ./
-        id: hello
+        id: ssm
         with:
-          who-to-greet: 'Mona the Octocat'
+          instance-id: i-042aa0941c970f223
+          commands: ls -al
 
       # Use the output from the `hello` step
       - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+        run: echo "Outputs ${{ steps.ssm.outputs }}"
       # - name: Configure AWS credentials
       #   uses: aws-actions/configure-aws-credentials@v1
       #   with:
