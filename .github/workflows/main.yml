@@ -15,6 +15,13 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
 
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          # aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          # aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+
       - name: AWS Run Command
         env:
           INSTANCE_ID: ${{ secrets.INSTANCE_ID }}
