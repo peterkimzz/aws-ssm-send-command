@@ -23,4 +23,4 @@ jobs:
           --instance-ids ${INSTANCE_ID} \
           --document-name "AWS-RunShellScript" \
           --comment "Blue/Green Deployment" \
-          --parameters commands="/bin/sh deploy.sh" workingDirectory="/home/ubuntu/api_production"
+          --parameters commands="/bin/sh deploy.sh"
