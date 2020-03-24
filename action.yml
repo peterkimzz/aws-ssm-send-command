@@ -1,16 +1,24 @@
 # action.yml
 name: 'Hello World'
+
 description: 'Greet someone and record the time'
+
 inputs:
-  who-to-greet: # id of input
-    description: 'Who to greet'
+  instance-id:
     required: true
-    default: 'World'
+    description: 'AWS EC2 Instance id'
+  commands:
+    required: true
+    description: 'Bash command you want to execute'
+    default: 'ls -al'
+
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  instance-id:
+    description: 'AWS EC2 Instance id'
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.who-to-greet }}
+    - ${{ inputs.instance-id }}
+    - ${{ inputs.commands }}

@@ -1,12 +1,24 @@
-# Hello world docker action
+# AWS SSM Send-Command
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+This action execute AWS SSM Send-Command by using SSM document AWS-RunShellScript.
 
 ## Inputs
 
-### `who-to-greet`
+### `intance-id`
 
 **Required** The name of the person to greet. Default `"World"`.
+
+### `commands`
+
+**Required** Bash command you want to execute in a EC2 Computer.
+
+### `comment`
+
+for comment.
+
+### `working-directory`
+
+Where bash command executes.
 
 ## Outputs
 
@@ -16,6 +28,11 @@ The time we greeted you.
 
 ## Example usage
 
-uses: actions/hello-world-docker-action@v1
+```yml
+uses: peterkimzz/aws-ssm-send-command
 with:
-who-to-greet: 'Mona the Octocat'
+  instances-id: i-xxxxxxxx
+  commands: ls -al
+  comment: Print files
+  working-directory: /home/ubuntu
+```
