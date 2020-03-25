@@ -40,8 +40,10 @@ function send_command() {
   #   --document-name ${DOCUMENT_NAME} \
   #   --parameters '{\"workingDirectory\": [\"${WORKING_DIRECTORY}\"], \"commands\": [\"${COMMANDS}\"] }'"
 
+  $SEND_COMMAND_CMD
+
+  echo $SEND_COMMAND_CMD
   echo $SEND_COMMAND_CMD | jq '.Command'
-  echo $SEND_COMMAND_CMD | jq '.Command.CommandId'
 
   # read id key token <<< ${CREDENTIALS}
   #   export AWS_ACCESS_KEY_ID="${id}"
