@@ -30,17 +30,18 @@ function init() {
 function send_command() {
   echo "== START SEND-COMMAND"
 
-  # SEND_COMMAND_CMD=$(aws ssm send-command \
-  #   --instance-ids ${INSTANCE_ID} \
-  #   --document-name ${DOCUMENT_NAME} \
-  #   --parameters '{"workingDirectory": ["${WORKING_DIRECTORY}"], "commands": ["${COMMANDS}"] }')
-
-  eval "aws ssm send-command \
+  SEND_COMMAND_CMD=$("aws ssm send-command \
     --instance-ids ${INSTANCE_ID} \
     --document-name ${DOCUMENT_NAME} \
-    --parameters '{\"workingDirectory\": [\"${WORKING_DIRECTORY}\"], \"commands\": [\"${COMMANDS}\"] }'"
+    --parameters '{\"workingDirectory\": [\"${WORKING_DIRECTORY}\"], \"commands\": [\"${COMMANDS}\"] }'")
 
-  echo $SEND_COMMAND
+  # eval "aws ssm send-command \
+  #   --instance-ids ${INSTANCE_ID} \
+  #   --document-name ${DOCUMENT_NAME} \
+  #   --parameters '{\"workingDirectory\": [\"${WORKING_DIRECTORY}\"], \"commands\": [\"${COMMANDS}\"] }'"
+
+  echo $SEND_COMMAND_CMD | jq '.Command'
+  echo $SEND_COMMAND_CMD | jq '.Command.CommandId'
 
   # read id key token <<< ${CREDENTIALS}
   #   export AWS_ACCESS_KEY_ID="${id}"
@@ -51,3 +52,46 @@ function send_command() {
 }
 
 main
+
+# {
+#     "Command": {
+#         "MaxErrors": "0", 
+#         "Parameters": {
+#             "commands": [
+#                 "ls -al"
+#             ], 
+#             "workingDirectory": [
+#                 "/home/ubuntu"
+#             ]
+#         }, 
+#         "DocumentName": "AWS-RunShellScript", 
+#         "OutputS3BucketName": "", 
+#         "OutputS3KeyPrefix": "", 
+#         "StatusDetails": "Pending", 
+#         "RequestedDateTime": 1585118047.63, 
+#         "Status": "Pending", 
+#         "TargetCount": 1, 
+#         "NotificationConfig": {
+#             "NotificationArn": "", 
+#             "NotificationEvents": [], 
+#             "NotificationType": ""
+#         }, 
+#         "InstanceIds": [
+#             "i-0249c189eb933eeed"
+#         ], 
+#         "ErrorCount": 0, 
+#         "MaxConcurrency": "50", 
+#         "ServiceRole": "", 
+#         "CloudWatchOutputConfig": {
+#             "CloudWatchLogGroupName": "", 
+#             "CloudWatchOutputEnabled": false
+#         }, 
+#         "DocumentVersion": "", 
+#         "CompletedCount": 0, 
+#         "Comment": "", 
+#         "ExpiresAfter": 1585125247.63, 
+#         "DeliveryTimedOutCount": 0, 
+#         "CommandId": "94fe9021-d563-420d-9175-c90b393497d9", 
+#         "Targets": []
+#     }
+# }
