@@ -1,5 +1,10 @@
 # action.yml
 name: 'AWS SSM Send-Command'
+author: 'peterkimzz'
+
+branding:
+  icon: 'arrow-up-right'
+  color: 'orange'
 
 description: 'Remote EC2 bash command execution.'
 
