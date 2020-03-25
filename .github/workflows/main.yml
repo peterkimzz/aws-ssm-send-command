@@ -15,8 +15,9 @@ jobs:
         uses: ./
         id: ssm
         with:
-          instance-id: i-0249c189eb933eeed
+          instance_id: i-0249c189eb933eeed
           commands: echo >> log.txt
+          working_directory: /home/ubuntu
       # - name: Configure AWS credentials
       #   uses: aws-actions/configure-aws-credentials@v1
       #   with:
