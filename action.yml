@@ -20,9 +20,11 @@ inputs:
   working_directory:
     require: false
     description: 'Command execution location'
+    default: ''
   comment:
     require: false
     description: 'Comment for Send-Command'
+    default: ''
 
 runs:
   using: 'docker'

@@ -29,12 +29,7 @@ function init() {
 
 function send_command() {
   echo "== START SEND-COMMAND"
-  aws ssm send-command \
-    --instance-ids ${INSTANCE_ID} \
-    --document-name ${DOCUMENT_NAME} \
-    --comment ${COMMENT} \
-    --parameters \
-      "{"workingDirectory": ["${WORKING_DIRECTORY}"], "commands":["${COMMENT}"]}"
+  aws ssm send-command --instance-ids ${INSTANCE_ID} --document-name ${DOCUMENT_NAME} --comment ${COMMENT} --parameters "{"workingDirectory": ["${WORKING_DIRECTORY}"], "commands":["${COMMENT}"]}"
 
   echo "== FINISHED SEND_COMMAND"
 }
