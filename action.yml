@@ -1,7 +1,7 @@
 # action.yml
-name: 'Hello World'
+name: 'AWS SSM Send-Command'
 
-description: 'Greet someone and record the time'
+description: 'Remote EC2 bash command execution.'
 
 inputs:
   instance-id:
