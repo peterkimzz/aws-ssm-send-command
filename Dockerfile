@@ -1,7 +1,11 @@
-FROM python:3-alpine
+FROM docker:19.03.4
 
-ENV AWSCLI_VERSION='1.17.0'
-RUN pip3 --no-cache-dir install awscli==${AWSCLI_VERSION}
+RUN apk update \
+  && apk upgrade \
+  && apk add --no-cache --update python py-pip coreutils bash \
+  && rm -rf /var/cache/apk/* \
+  && pip install awscli \
+  && apk --purge -v del py-pip
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
