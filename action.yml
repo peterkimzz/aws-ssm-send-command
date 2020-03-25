@@ -1,6 +1,5 @@
-# action.yml
 name: 'AWS SSM Send-Command'
-author: 'peterkimzz'
+author: 'Donghyun Peter Kim <peterkimzz69@gmail.com>'
 
 branding:
   icon: 'arrow-up-right'
@@ -9,21 +8,22 @@ branding:
 description: 'Remote EC2 bash command execution.'
 
 inputs:
-  instance-id:
+  instance_id:
     required: true
     description: 'AWS EC2 Instance id'
   commands:
     required: true
     description: 'Bash command you want to execute'
-    default: 'ls -al'
-
-outputs:
-  instance-id:
-    description: 'AWS EC2 Instance id'
+  document_name:
+    description: 'Script Environment'
+    default: 'AWS-RunShellScript'
+  working_directory:
+    require: false
+    description: 'Command execution location'
+  comment:
+    require: false
+    description: 'Comment for Send-Command'
 
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.instance-id }}
-    - ${{ inputs.commands }}
