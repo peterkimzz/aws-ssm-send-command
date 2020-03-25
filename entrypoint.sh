@@ -30,20 +30,18 @@ function init() {
 function send_command() {
   echo "== START SEND-COMMAND"
 
-  SEND_COMMAND_CMD=$("aws ssm send-command \
-    --instance-ids ${INSTANCE_ID} \
-    --document-name ${DOCUMENT_NAME} \
-    --parameters '{\"workingDirectory\": [\"${WORKING_DIRECTORY}\"], \"commands\": [\"${COMMANDS}\"] }'")
-
-  # eval "aws ssm send-command \
+  # SEND_COMMAND_CMD=$("aws ssm send-command \
   #   --instance-ids ${INSTANCE_ID} \
   #   --document-name ${DOCUMENT_NAME} \
-  #   --parameters '{\"workingDirectory\": [\"${WORKING_DIRECTORY}\"], \"commands\": [\"${COMMANDS}\"] }'"
+  #   --parameters '{\"workingDirectory\": [\"${WORKING_DIRECTORY}\"], \"commands\": [\"${COMMANDS}\"] }'")
 
-  $SEND_COMMAND_CMD
+  eval "aws ssm send-command \
+    --instance-ids ${INSTANCE_ID} \
+    --document-name ${DOCUMENT_NAME} \
+    --parameters '{\"workingDirectory\": [\"${WORKING_DIRECTORY}\"], \"commands\": [\"${COMMANDS}\"] }'"
 
-  echo $SEND_COMMAND_CMD
-  echo $SEND_COMMAND_CMD | jq '.Command'
+  # echo $SEND_COMMAND_CMD
+  # echo $SEND_COMMAND_CMD | jq '.Command'
 
   # read id key token <<< ${CREDENTIALS}
   #   export AWS_ACCESS_KEY_ID="${id}"
