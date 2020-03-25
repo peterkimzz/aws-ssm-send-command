@@ -22,5 +22,5 @@ jobs:
         uses: ./
         with:
           instance_id: i-0249c189eb933eeed
-          commands: echo >> log.txt
+          commands: ls -al
           working_directory: /home/ubuntu

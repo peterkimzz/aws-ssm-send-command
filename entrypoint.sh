@@ -30,10 +30,15 @@ function init() {
 function send_command() {
   echo "== START SEND-COMMAND"
 
-  SEND_COMMAND_CMD=$(aws ssm send-command \
+  # SEND_COMMAND_CMD=$(aws ssm send-command \
+  #   --instance-ids ${INSTANCE_ID} \
+  #   --document-name ${DOCUMENT_NAME} \
+  #   --parameters '{"workingDirectory": ["${WORKING_DIRECTORY}"], "commands": ["${COMMANDS}"] }')
+
+  eval "aws ssm send-command \
     --instance-ids ${INSTANCE_ID} \
     --document-name ${DOCUMENT_NAME} \
-    --parameters "\"{"workingDirectory": ["${WORKING_DIRECTORY}"], "commands":["${COMMANDS}"]}\"")
+    --parameters '{"workingDirectory": ["${WORKING_DIRECTORY}"], "commands": ["${COMMANDS}"] }'"
 
   echo $SEND_COMMAND
 
