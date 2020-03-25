@@ -33,7 +33,7 @@ function send_command() {
   SEND_COMMAND_CMD=$(aws ssm send-command \
     --instance-ids ${INSTANCE_ID} \
     --document-name ${DOCUMENT_NAME} \
-    --parameters "\'{"workingDirectory": ["${WORKING_DIRECTORY}"], "commands":["${COMMANDS}"]}\'")
+    --parameters "\"{"workingDirectory": ["${WORKING_DIRECTORY}"], "commands":["${COMMANDS}"]}\"")
 
   echo $SEND_COMMAND
 
