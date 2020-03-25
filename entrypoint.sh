@@ -33,7 +33,14 @@ function send_command() {
   SEND_COMMAND_CMD=$(aws ssm send-command \
     --instance-ids ${INSTANCE_ID} \
     --document-name ${DOCUMENT_NAME} \
-    --parameters '{"workingDirectory": ["${WORKING_DIRECTORY}"], "commands":["${COMMENT}"]}')
+    --parameters "\'{"workingDirectory": ["${WORKING_DIRECTORY}"], "commands":["${COMMANDS}"]}\'")
+
+  echo $SEND_COMMAND
+
+  # read id key token <<< ${CREDENTIALS}
+  #   export AWS_ACCESS_KEY_ID="${id}"
+  #   export AWS_SECRET_ACCESS_KEY="${key}"
+  #   export AWS_SESSION_TOKEN="${token}"
 
   echo "== FINISHED SEND_COMMAND"
 }
