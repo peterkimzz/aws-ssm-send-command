@@ -1,0 +1,35 @@
+name: AWS Run Command
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: AWS SSM Send-Command
+        uses: ./
+        id: ssm
+        with:
+          instance-id: i-0249c189eb933eeed
+          commands: echo >> log.txt
+      # - name: Configure AWS credentials
+      #   uses: aws-actions/configure-aws-credentials@v1
+      #   with:
+      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws-region: ap-northeast-2
+      # - name: AWS Run Command
+      #   env:
+      #     INSTANCE_ID: ${{ secrets.INSTANCE_ID }}
+      #   run: |
+      #     aws ssm send-command \
+      #     --instance-ids ${INSTANCE_ID} \
+      #     --document-name "AWS-RunShellScript" \
+      #     --comment "Blue/Green Deployment" \
+      #     --parameters \
+      #       '{"workingDirectory": ["/home/ubuntu/api_production"], "commands":["/bin/sh deploy.sh"]}'
