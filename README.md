@@ -18,7 +18,7 @@ Before using this actions, you have to set **AWS IAM** and **Github Actions for 
 
 ## Inputs
 
-### `intance-id`
+### `instance-ids`
 
 **Required** The name of the person to greet. Default `"World"`.
 
@@ -45,7 +45,7 @@ The time we greeted you.
 ```yml
 uses: peterkimzz/aws-ssm-send-command
 with:
-  instances-id: i-xxxxxxxx
+  instance-ids: i-xxxxxxxx
   commands: ls -al
   comment: Print files
   working-directory: /home/ubuntu

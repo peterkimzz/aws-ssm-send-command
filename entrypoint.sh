@@ -4,7 +4,7 @@
 set -e
 
 function main() {
-  sanitize "${INPUT_INSTANCE_ID}" "instnace_id"
+  sanitize "${INPUT_INSTANCE_IDS}" "instance-ids"
   sanitize "${INPUT_COMMANDS}" "commands"
 
   init
@@ -19,7 +19,7 @@ function sanitize() {
 }
 
 function init() {
-  export INSTANCE_ID=$INPUT_INSTANCE_ID
+  export INSTANCE_IDS=$INPUT_INSTANCE_IDS
   export COMMANDS=$INPUT_COMMANDS
   export DOCUMENT_NAME=$INPUT_DOCUMENT_NAME
 
@@ -36,7 +36,7 @@ function send_command() {
   #   --parameters '{\"workingDirectory\": [\"${WORKING_DIRECTORY}\"], \"commands\": [\"${COMMANDS}\"] }'")
 
   eval "aws ssm send-command \
-    --instance-ids ${INSTANCE_ID} \
+    --instance-ids ${INSTANCE_IDS} \
     --document-name ${DOCUMENT_NAME} \
     --parameters '{\"workingDirectory\": [\"${WORKING_DIRECTORY}\"], \"commands\": [\"${COMMANDS}\"] }'"
 
