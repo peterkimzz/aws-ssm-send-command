@@ -7,12 +7,14 @@ This action execute AWS SSM Send-Command by using SSM document AWS-RunShellScrip
 1. AWS IAM
 2. aws-actions/configure-aws-credentials@v1
 
+```
 - name: Configure AWS credentials
   uses: aws-actions/configure-aws-credentials@v1
   with:
-  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  aws-region: ap-northeast-2
+    aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    aws-region: ap-northeast-2
+```
 
 Before using this actions, you have to set **AWS IAM** and **Github Actions for AWS Authentication**.
 
@@ -20,33 +22,49 @@ Before using this actions, you have to set **AWS IAM** and **Github Actions for 
 
 ### `instance-ids`
 
-**Required** The name of the person to greet. Default `"World"`.
+**Required** The id of AWS EC2 instance id (e.g i-xxx...)
 
 ### `commands`
 
 **Required** Bash command you want to execute in a EC2 Computer.
 
-### `comment`
-
-for comment.
-
 ### `working-directory`
 
 Where bash command executes.
 
-## Outputs
+### `comment`
 
-### `time`
+Currently yout cannot customized. (Coming soon.)
 
-The time we greeted you.
+default: `Github Actions`
 
-## Example usage
+## Full Example Usage
 
 ```yml
-uses: peterkimzz/aws-ssm-send-command
-with:
-  instance-ids: i-xxxxxxxx
-  commands: ls -al
-  comment: Print files
-  working-directory: /home/ubuntu
+name: AWS Run Command Example
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+
+      - name: AWS SSM Send-Command
+        uses: peterkimzz/aws-ssm-send-command
+        with:
+          instance_id: ${{ secrets.INSTANCE_ID }}
+          commands: ls -al
+          working_directory: /home/ubuntu
 ```
