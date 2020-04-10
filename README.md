@@ -17,6 +17,7 @@ This action execute AWS SSM Send-Command by using SSM document AWS-RunShellScrip
 ```
 
 Before using this actions, you have to set **AWS IAM** and **Github Actions for AWS Authentication**.
+(This action does not contain AWS Authentication.)
 
 ## Inputs
 
@@ -32,9 +33,11 @@ Before using this actions, you have to set **AWS IAM** and **Github Actions for 
 
 Where bash command executes.
 
+default: `/home/ubuntu`
+
 ### `comment`
 
-Currently yout cannot customized. (Coming soon.)
+Logging message attached AWS SSM.
 
 default: `Github Actions`
 
@@ -64,7 +67,7 @@ jobs:
       - name: AWS SSM Send-Command
         uses: peterkimzz/aws-ssm-send-command
         with:
-          instance_id: ${{ secrets.INSTANCE_ID }}
+          instance_ids: ${{ secrets.INSTANCE_ID }}
           commands: ls -al
           working_directory: /home/ubuntu
 ```

@@ -8,23 +8,24 @@ branding:
 description: 'Remote EC2 bash command execution.'
 
 inputs:
-  instance_id:
+  instance_ids:
     required: true
     description: 'AWS EC2 Instance id'
   commands:
     required: true
     description: 'Bash command you want to execute'
   document_name:
+    required: false
     description: 'Script Environment'
     default: 'AWS-RunShellScript'
   working_directory:
-    require: false
+    required: false
     description: 'Command execution location'
-    default: ''
+    default: '/home/ubuntu'
   comment:
-    require: false
+    required: false
     description: 'Comment for Send-Command'
-    default: ''
+    default: 'Github Actions'
 
 runs:
   using: 'docker'

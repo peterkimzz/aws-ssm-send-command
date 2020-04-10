@@ -21,6 +21,5 @@ jobs:
       - name: AWS SSM Send-Command
         uses: ./
         with:
-          instance_id: i-0249c189eb933eeed
+          instance_ids: ${{ secrets.INSTANCE_ID }}
           commands: ls -al
-          working_directory: /home/ubuntu
