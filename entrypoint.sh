@@ -38,7 +38,7 @@ function send_command() {
   eval "aws ssm send-command \
     --instance-ids ${INSTANCE_IDS} \
     --document-name ${DOCUMENT_NAME} \
-    --comment ${COMMENT} \
+    --comment "${COMMENT}" \
     --parameters '{\"workingDirectory\": [\"${WORKING_DIRECTORY}\"], \"commands\": [\"${COMMANDS}\"] }'"
 
   # echo $SEND_COMMAND_CMD
