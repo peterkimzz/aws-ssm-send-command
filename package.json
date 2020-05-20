@@ -1,0 +1,25 @@
+{
+  "name": "aws-ssm-send-command",
+  "version": "1.0.0",
+  "description": "Github Actions for executing AWS SSM Send Command",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterkimzz/aws-ssm-send-command.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/peterkimzz/aws-ssm-send-command/issues"
+  },
+  "homepage": "https://github.com/peterkimzz/aws-ssm-send-command#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/github": "^2.2.0",
+    "aws-sdk": "^2.680.0"
+  }
+}

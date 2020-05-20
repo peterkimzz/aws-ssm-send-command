@@ -8,25 +8,31 @@ branding:
 description: 'Remote EC2 bash command execution.'
 
 inputs:
-  instance_ids:
+  aws-access-key-id:
     required: true
-    description: 'AWS EC2 Instance id'
-  commands:
+    description: 'AWS access key id'
+  aws-secret-access-key:
     required: true
-    description: 'Bash command you want to execute'
-  document_name:
+    description: 'AWS secret access key'
+  aws-region:
+    required: true
+    description: 'Where EC2 instance is'
+  instance-ids:
+    required: true
+    description: 'AWS EC2 Instance id or ids'
+  command:
     required: false
-    description: 'Script Environment'
-    default: 'AWS-RunShellScript'
-  working_directory:
+    description: 'Bash command you want to execute'
+    default: 'echo $(date) >> logs.txt'
+  working-directory:
     required: false
     description: 'Command execution location'
     default: '/home/ubuntu'
   comment:
     required: false
     description: 'Comment for Send-Command'
-    default: 'Github Actions'
+    default: 'Executed by Github Actions'
 
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'node12'
+  main: 'index.js'

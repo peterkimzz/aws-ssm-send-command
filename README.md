@@ -1,73 +1,106 @@
 # AWS SSM Send-Command
 
-This action execute AWS SSM Send-Command by using SSM document AWS-RunShellScript.
+This action helps you to execute remote bash command for AWS EC2 instance **without SSH or other accessing**. 
 
-## Requirements
+(This action internally uses AWS SSM Send-Command.)
 
-1. AWS IAM
-2. aws-actions/configure-aws-credentials@v1
-
-```
-- name: Configure AWS credentials
-  uses: aws-actions/configure-aws-credentials@v1
-  with:
-    aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-    aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    aws-region: ap-northeast-2
-```
-
-Before using this actions, you have to set **AWS IAM** and **Github Actions for AWS Authentication**.
-(This action does not contain AWS Authentication.)
-
-## Inputs
-
-### `instance-ids`
-
-**Required** The id of AWS EC2 instance id (e.g i-xxx...)
-
-### `commands`
-
-**Required** Bash command you want to execute in a EC2 Computer.
-
-### `working-directory`
-
-Where bash command executes.
-
-default: `/home/ubuntu`
-
-### `comment`
-
-Logging message attached AWS SSM.
-
-default: `Github Actions`
-
-## Full Example Usage
+## Usage example
 
 ```yml
-name: AWS Run Command Example
+name: AWS SSM Send-Command Example
 
 on:
   push:
     branches: [master]
 
 jobs:
-  build:
+  start:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-northeast-2
-
       - name: AWS SSM Send-Command
         uses: peterkimzz/aws-ssm-send-command
         with:
-          instance_ids: ${{ secrets.INSTANCE_ID }}
-          commands: ls -al
-          working_directory: /home/ubuntu
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-west-1
+          instance-ids: ${{ secrets.INSTANCE_ID }}
+          working-directory: /home/ubuntu/application
+          command: ls -al
+          comment: Hello world!
 ```
+
+
+## Inputs
+
+### [Required] `aws-access-key-id`
+Your IAM access key id.
+
+
+### **Required** `aws-secret-access-key`
+Your IAM secret access key id.
+
+### **Required** `aws-region`
+AWS EC2 Instance region. (e.g. us-west-1, us-northeast-1, ...)
+
+### **Required** `instance-ids`
+The id of AWS EC2 instance id (e.g i-xxx...)
+
+```yml
+# single instance
+instance-ids: i-0b1f8b18a1d450000
+
+# multiple instances (maxium 50 values)
+instance-ids: | 
+  i-0b1f8b18a1d450000
+  i-0b1f8b18a1d450001
+  i-0b1f8b18a1d450002
+```
+
+
+### `command`
+Bash command you want to execute in a EC2 Computer.
+
+```yml
+# default 
+command: echo $(date) >> logs.txt
+
+# restart your pm2 service
+command: pm2 restart 0
+
+# or execute shell script
+command: /bin/sh restart.sh
+```
+
+### `working-directory`
+Where bash command executes.
+
+```yml
+# default
+working-directory: /home/ubuntu
+```
+
+### `comment`
+
+Logging message attached AWS SSM.
+
+```yml
+# default
+comment: Executed by Github Actions
+```
+
+
+## Outputs
+
+### command-id
+AWS SSM Run-Command id. (uuid type)
+
+``` bash
+# example
+6cf26b6f-b68f-4e20-b801-f6ee5318d000
+```
+
+### completed-count
+How many commands are executed.
