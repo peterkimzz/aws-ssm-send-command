@@ -29,9 +29,8 @@ try {
 
     console.log(data)
 
-    const { CommandId, CompletedCount } = data.Command
+    const { CommandId } = data.Command
     core.setOutput('command-id', CommandId)
-    core.setOutput('completed-count', CompletedCount)
   })
 } catch (err) {
   console.error(err, err.stack)

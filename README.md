@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: AWS SSM Send-Command
-        uses: peterkimzz/aws-ssm-send-command
+        uses: peterkimzz/aws-ssm-send-command@1.0.1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -31,6 +31,10 @@ jobs:
           working-directory: /home/ubuntu/application
           command: ls -al
           comment: Hello world!
+
+      # Catch SSM outputs
+      - name: Get the outputs
+        run: echo "The Command id is ${{ steps.ssm.outputs.command-id }}"
 ```
 
 
@@ -101,6 +105,3 @@ AWS SSM Run-Command id. (uuid type)
 # example
 6cf26b6f-b68f-4e20-b801-f6ee5318d000
 ```
-
-### completed-count
-How many commands are executed.
