@@ -4,6 +4,7 @@ This action helps you to execute remote bash command for AWS EC2 instance **with
 
 (This action internally uses AWS SSM Send-Command.)
 
+
 ## Usage example
 
 ```yml
