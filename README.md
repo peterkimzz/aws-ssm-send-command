@@ -4,6 +4,16 @@ This action helps you to execute remote bash command for AWS EC2 instance **with
 
 (This action internally uses AWS SSM Send-Command.)
 
+## Contents
+- [Requirements](#Requirements)
+- [Usage example](#Usage-example)
+- [Inputs](#Inputs)
+- [Outputs](#Outputs)
+- [Error Handling](#Error-Handling)
+
+## Requirements
+
+To use this action, you have to set AWS IAM Role `AmazonSSMFullAccess` to your IAM user.
 
 ## Usage example
 
@@ -23,6 +33,7 @@ jobs:
 
       - name: AWS SSM Send-Command
         uses: peterkimzz/aws-ssm-send-command@1.0.1
+        id: ssm
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -105,3 +116,9 @@ AWS SSM Run-Command id. (uuid type)
 # example
 6cf26b6f-b68f-4e20-b801-f6ee5318d000
 ```
+
+## Error Handling
+
+### AccessDeniedException
+
+This error occurs when you are not set AWS IAM role about SSM. Please set the IAM permission `AmazonSSMFullAccess` (recommended)
