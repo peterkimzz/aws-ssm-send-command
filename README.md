@@ -35,18 +35,17 @@ jobs:
 
 ## Inputs
 
-### [Required] `aws-access-key-id`
-Your IAM access key id.
+### `aws-access-key-id`
+**Required** Your IAM access key id.
 
+### `aws-secret-access-key`
+**Required** Your IAM secret access key id.
 
-### **Required** `aws-secret-access-key`
-Your IAM secret access key id.
+### `aws-region`
+**Required** AWS EC2 Instance region. (e.g. us-west-1, us-northeast-1, ...)
 
-### **Required** `aws-region`
-AWS EC2 Instance region. (e.g. us-west-1, us-northeast-1, ...)
-
-### **Required** `instance-ids`
-The id of AWS EC2 instance id (e.g i-xxx...)
+### `instance-ids`
+**Required** The id of AWS EC2 instance id (e.g i-xxx...)
 
 ```yml
 # single instance
