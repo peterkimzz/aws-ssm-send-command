@@ -18,8 +18,8 @@
   },
   "homepage": "https://github.com/peterkimzz/aws-ssm-send-command#readme",
   "dependencies": {
-    "@actions/core": "^1.2.4",
-    "@actions/github": "^2.2.0",
-    "aws-sdk": "^2.680.0"
+    "@actions/core": "1.2.4",
+    "@actions/github": "4.0.0",
+    "aws-sdk": "2.731.0"
   }
 }
