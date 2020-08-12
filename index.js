@@ -58,11 +58,10 @@ function SanitizeInputs() {
   const _outputS3KeyPrefix = "your-s3-bucket-directory-name";
 
   return {
-    accessKeyId: "AKIA5BFI3MEM66C3Q3U4" || _accessKeyId,
-    secretAccessKey:
-      "gTKiSnTxxBt7Xk0ivl92gljVuYFeP9Z+uSAd5Im9" || _secretAccessKey,
+    accessKeyId: "" || _accessKeyId,
+    secretAccessKey: "" || _secretAccessKey,
     region: "ap-northeast-2" || _region,
-    instanceIds: "i-051bdaa95bb876d4e" || _instanceIds.split(/\n/),
+    instanceIds: "" || _instanceIds.split(/\n/),
     command: `echo hello >> log.txt` || _command,
     documentName: _documentName,
     workingDirectory: "" || _workingDirectory,
