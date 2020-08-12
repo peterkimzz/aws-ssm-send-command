@@ -34,7 +34,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: AWS SSM Send-Command
-        uses: peterkimzz/aws-ssm-send-command@1.0.1
+        uses: peterkimzz/aws-ssm-send-command@1.0.2
         id: ssm
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}

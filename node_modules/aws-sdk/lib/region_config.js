@@ -50,11 +50,17 @@ function configureEndpoint(service) {
       // set dualstack endpoint
       if (service.config.useDualstack && util.isDualstackAvailable(service)) {
         config = util.copy(config);
-        config.endpoint = '{service}.dualstack.{region}.amazonaws.com';
+        config.endpoint = config.endpoint.replace(
+          /{service}\.({region}\.)?/,
+          '{service}.dualstack.{region}.'
+        );
       }
 
       // set global endpoint
       service.isGlobalEndpoint = !!config.globalEndpoint;
+      if (config.signingRegion) {
+        service.signingRegion = config.signingRegion;
+      }
 
       // signature version
       if (!config.signatureVersion) config.signatureVersion = 'v4';
