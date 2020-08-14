@@ -62,7 +62,7 @@ function SanitizeInputs() {
     secretAccessKey: _secretAccessKey,
     region: _region,
     instanceIds: _instanceIds.split(/\n/),
-    command: `echo hello >> log.txt` || _command,
+    command: _command,
     documentName: _documentName,
     workingDirectory: _workingDirectory,
     comment: _comment,
