@@ -3,6 +3,8 @@ const core = require("@actions/core");
 const github = require("@actions/github");
 
 try {
+  core.isDebug(true);
+
   const inputs = SanitizeInputs();
 
   // AWS Configure
@@ -57,8 +59,8 @@ function SanitizeInputs() {
   const _outputS3BucketName = "your-s3-bucket-name";
   const _outputS3KeyPrefix = "your-s3-bucket-directory-name";
 
-  core.info(_instanceIds);
-  core.info(_instanceIds.split(/\n/));
+  core.info("_instanceIds: ", _instanceIds);
+  core.info("_instanceIds.split(/\n/: ", _instanceIds.split(/\n/));
 
   return {
     accessKeyId: _accessKeyId,
