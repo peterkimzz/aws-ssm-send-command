@@ -1,0 +1,24 @@
+name: CI/CD for production
+
+on: push
+
+jobs:
+  deployment:
+    # needs: before_deployment
+    name: App Container Image Build && Deploy
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: AWS SSM Send Command
+        uses: ./
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+          instance-ids: ${{ secrets.INSTANCE_ID }}
+          comment: aws-ssm-send-command testing
+          working-directory: /home/ubuntu/
+          command: echo $(date) >> logs.txt

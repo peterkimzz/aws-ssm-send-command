@@ -57,14 +57,17 @@ function SanitizeInputs() {
   const _outputS3BucketName = "your-s3-bucket-name";
   const _outputS3KeyPrefix = "your-s3-bucket-directory-name";
 
+  console.log(_instanceIds);
+  console.log(_instanceIds.split(/\n/));
+
   return {
-    accessKeyId: "" || _accessKeyId,
-    secretAccessKey: "" || _secretAccessKey,
-    region: "ap-northeast-2" || _region,
-    instanceIds: "" || _instanceIds.split(/\n/),
+    accessKeyId: _accessKeyId,
+    secretAccessKey: _secretAccessKey,
+    region: _region,
+    instanceIds: _instanceIds.split(/\n/),
     command: `echo hello >> log.txt` || _command,
     documentName: _documentName,
-    workingDirectory: "" || _workingDirectory,
-    comment: "" || _comment,
+    workingDirectory: _workingDirectory,
+    comment: _comment,
   };
 }

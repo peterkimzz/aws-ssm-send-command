@@ -81,7 +81,7 @@ instance-ids: |
 
 ### `command`
 
-Bash command you want to execute in a EC2 Computer.
+Bash command you want to execute in a EC2 instance.
 
 ```yml
 # default
