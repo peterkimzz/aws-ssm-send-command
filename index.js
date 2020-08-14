@@ -47,7 +47,8 @@ function SanitizeInputs() {
   const _region = core.getInput("aws-region", { required: true });
 
   // SSM Send Command
-  const _instanceIds = core.getInput("instance-ids", { required: true });
+  const _instanceId = core.getInput("instance-id");
+  const _instanceIds = core.getInput("instance-ids");
   const _command = core.getInput("command");
   const _workingDirectory = core.getInput("working-directory");
   const _comment = core.getInput("comment");
@@ -57,8 +58,8 @@ function SanitizeInputs() {
   const _outputS3BucketName = "your-s3-bucket-name";
   const _outputS3KeyPrefix = "your-s3-bucket-directory-name";
 
-  console.log(_instanceIds);
-  console.log(_instanceIds.split(/\n/));
+  core.info(_instanceIds);
+  core.info(_instanceIds.split(/\n/));
 
   return {
     accessKeyId: _accessKeyId,
