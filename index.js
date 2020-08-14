@@ -47,8 +47,7 @@ function SanitizeInputs() {
   const _region = core.getInput("aws-region", { required: true });
 
   // SSM Send Command
-  const _instanceId = core.getInput("instance-id");
-  const _instanceIds = core.getInput("instance-ids");
+  const _instanceIds = core.getInput("instance-ids", { required: true });
   const _command = core.getInput("command");
   const _workingDirectory = core.getInput("working-directory");
   const _comment = core.getInput("comment");
