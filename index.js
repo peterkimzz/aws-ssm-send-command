@@ -3,8 +3,6 @@ const core = require("@actions/core");
 const github = require("@actions/github");
 
 try {
-  core.isDebug(true);
-
   const inputs = SanitizeInputs();
 
   // AWS Configure
@@ -58,9 +56,6 @@ function SanitizeInputs() {
   const _documentName = "AWS-RunShellScript";
   const _outputS3BucketName = "your-s3-bucket-name";
   const _outputS3KeyPrefix = "your-s3-bucket-directory-name";
-
-  console.log("instanceIds: ", _instanceIds);
-  console.log("instanceIds: ", _instanceIds.split(/\n/));
 
   return {
     accessKeyId: _accessKeyId,

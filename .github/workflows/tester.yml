@@ -4,7 +4,7 @@ on: push
 
 jobs:
   deployment:
-    name: Code Test
+    name: Library test by self-hosting
     runs-on: self-hosted
 
     steps:
@@ -14,10 +14,10 @@ jobs:
       - name: AWS SSM Send Command
         uses: ./
         with:
+          aws-region: ap-northeast-2
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-northeast-2
-          instance-ids: i-0b1f8b18a1d450000
+          instance-ids: ${{ secrets.INSTANCE_ID }}
           comment: aws-ssm-send-command testing
           working-directory: /home/ubuntu/
           command: echo $(date) >> logs.txt
