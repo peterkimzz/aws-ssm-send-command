@@ -57,9 +57,6 @@ function SanitizeInputs() {
   const _outputS3BucketName = "your-s3-bucket-name";
   const _outputS3KeyPrefix = "your-s3-bucket-directory-name";
 
-  console.log(_instanceIds);
-  console.log(_instanceIds.split(/\n/));
-
   return {
     accessKeyId: _accessKeyId,
     secretAccessKey: _secretAccessKey,

@@ -37,10 +37,11 @@ jobs:
         uses: peterkimzz/aws-ssm-send-command@1.0.2
         id: ssm
         with:
+          aws-region: ${{ secrets.AWS_REGION }}
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-west-1 # adjust to your region
           instance-ids: ${{ secrets.INSTANCE_ID }}
+
           working-directory: /home/ubuntu/application
           command: ls -al
           comment: Hello world!
