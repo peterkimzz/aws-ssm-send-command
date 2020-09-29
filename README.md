@@ -34,7 +34,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: AWS SSM Send-Command
-        uses: peterkimzz/aws-ssm-send-command@1.0.5
+        uses: peterkimzz/aws-ssm-send-command@master
         id: ssm
         with:
           aws-region: ${{ secrets.AWS_REGION }}
