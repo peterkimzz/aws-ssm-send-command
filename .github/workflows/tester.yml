@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: AWS SSM Send Command
-        uses: ./dist
+        uses: ./
         with:
           aws-region: ap-northeast-2
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
