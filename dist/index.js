@@ -3,10 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var aws_sdk_1 = __importDefault(require("aws-sdk"));
-var core_1 = __importDefault(require("@actions/core"));
+const aws_sdk_1 = __importDefault(require("aws-sdk"));
+const core_1 = __importDefault(require("@actions/core"));
 try {
-    var inputs = SanitizeInputs();
+    const inputs = SanitizeInputs();
     // AWS Configure
     aws_sdk_1.default.config.update({
         accessKeyId: inputs.accessKeyId,
@@ -14,7 +14,7 @@ try {
         region: inputs.region,
     });
     // Run Send Command
-    var ssm = new aws_sdk_1.default.SSM();
+    const ssm = new aws_sdk_1.default.SSM();
     ssm.sendCommand();
     ssm.sendCommand({
         InstanceIds: inputs.instanceIds,
@@ -24,7 +24,7 @@ try {
             workingDirectory: [inputs.workingDirectory],
             commands: [inputs.command],
         },
-    }, function (err, data) {
+    }, (err, data) => {
         var _a;
         if (err)
             throw err;
@@ -38,20 +38,20 @@ catch (err) {
 }
 function SanitizeInputs() {
     // AWS
-    var _accessKeyId = core_1.default.getInput("aws-access-key-id", { required: true });
-    var _secretAccessKey = core_1.default.getInput("aws-secret-access-key", {
+    const _accessKeyId = core_1.default.getInput("aws-access-key-id", { required: true });
+    const _secretAccessKey = core_1.default.getInput("aws-secret-access-key", {
         required: true,
     });
-    var _region = core_1.default.getInput("aws-region", { required: true });
+    const _region = core_1.default.getInput("aws-region", { required: true });
     // SSM Send Command
-    var _instanceIds = core_1.default.getInput("instance-ids", { required: true });
-    var _command = core_1.default.getInput("command");
-    var _workingDirectory = core_1.default.getInput("working-directory");
-    var _comment = core_1.default.getInput("comment");
+    const _instanceIds = core_1.default.getInput("instance-ids", { required: true });
+    const _command = core_1.default.getInput("command");
+    const _workingDirectory = core_1.default.getInput("working-directory");
+    const _comment = core_1.default.getInput("comment");
     // customized not supported yet, will be updated soon.
-    var _documentName = "AWS-RunShellScript";
-    var _outputS3BucketName = "your-s3-bucket-name";
-    var _outputS3KeyPrefix = "your-s3-bucket-directory-name";
+    const _documentName = "AWS-RunShellScript";
+    const _outputS3BucketName = "your-s3-bucket-name";
+    const _outputS3KeyPrefix = "your-s3-bucket-directory-name";
     return {
         accessKeyId: _accessKeyId,
         secretAccessKey: _secretAccessKey,
