@@ -2,9 +2,9 @@
   "name": "aws-ssm-send-command",
   "version": "1.0.0",
   "description": "Github Actions for executing AWS SSM Send Command",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node_modules/.bin/tsc"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,10 @@
   "dependencies": {
     "@actions/core": "1.2.6",
     "@actions/github": "4.0.0",
-    "aws-sdk": "2.762.0",
+    "aws-sdk": "2.784.0",
     "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.5"
   }
 }

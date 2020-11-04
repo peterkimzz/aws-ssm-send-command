@@ -1,38 +1,38 @@
-name: 'AWS SSM Send-Command'
-author: 'Donghyun Peter Kim <peterkimzz69@gmail.com>'
+name: "AWS SSM Send-Command"
+author: "Donghyun Peter Kim <peterkimzz69@gmail.com>"
 
 branding:
-  icon: 'arrow-up-right'
-  color: 'orange'
+  icon: "arrow-up-right"
+  color: "orange"
 
-description: 'Remote EC2 bash command execution.'
+description: "Remote EC2 bash command execution."
 
 inputs:
   aws-access-key-id:
     required: true
-    description: 'AWS access key id'
+    description: "AWS access key id"
   aws-secret-access-key:
     required: true
-    description: 'AWS secret access key'
+    description: "AWS secret access key"
   aws-region:
     required: true
-    description: 'Where EC2 instance is'
+    description: "Where EC2 instance is"
   instance-ids:
     required: true
-    description: 'AWS EC2 Instance id or ids'
+    description: "AWS EC2 Instance id or ids"
   command:
     required: false
-    description: 'Bash command you want to execute'
-    default: 'echo $(date) >> logs.txt'
+    description: "Bash command you want to execute"
+    default: "echo $(date) >> logs.txt"
   working-directory:
     required: false
-    description: 'Command execution location'
-    default: '/home/ubuntu'
+    description: "Command execution location"
+    default: "/home/ubuntu"
   comment:
     required: false
-    description: 'Comment for Send-Command'
-    default: 'Executed by Github Actions'
+    description: "Comment for Send-Command"
+    default: "Executed by Github Actions"
 
 runs:
-  using: 'node12'
-  main: 'index.js'
+  using: "node12"
+  main: "dist/index.js"
