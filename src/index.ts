@@ -1,6 +1,6 @@
 import AWS, { AWSError } from "aws-sdk";
-import core from "@actions/core";
-import github from "@actions/github";
+import * as core from "@actions/core";
+import * as github from "@actions/github";
 import { SendCommandResult } from "aws-sdk/clients/ssm";
 
 try {
