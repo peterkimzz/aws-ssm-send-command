@@ -20,7 +20,7 @@
   "dependencies": {
     "@actions/core": "1.2.7",
     "@actions/github": "4.0.0",
-    "aws-sdk": "2.891.0",
+    "aws-sdk": "2.892.0",
     "node-fetch": "2.6.1"
   },
   "devDependencies": {
