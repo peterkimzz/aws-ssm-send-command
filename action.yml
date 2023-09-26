@@ -14,6 +14,9 @@ inputs:
   aws-secret-access-key:
     required: true
     description: "AWS secret access key"
+  aws-session-token:
+    required: false
+    description: "(Optional) AWS sessionToken"
   aws-region:
     required: true
     description: "Where EC2 instance is"
